@@ -16,8 +16,8 @@ node {
         */ 
              
          def docker_image=params.Docker_Image
-         sh "cd /opt/automation/ansible && sudo sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
-             -u ubuntu -e '(image_id='${docker_image}'' --private-key Jenkins.pem -i invent installdocker.yml"      
+         sh ("cd /opt/automation/ansible && sudo sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
+             -u ubuntu -e 'image_id='${docker_image}'' --private-key Jenkins.pem -i invent installdocker.yml")     
        
        }      
        
