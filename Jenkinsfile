@@ -6,7 +6,8 @@ node {
   /* To create AWS Instances */
   stage('Automating') {
        def instances=params.No_of_Instances_required
-       def image=params.EC2_Image_ID
+       def image_type=params.EC2_Image_ID
+       def image=image_type.tokensize('-')[-1]
        if (params.Automation_Type == 'Full_Automation')
        {
          sh ("cd /opt/automation/terraform/dev && terraform plan -out=tfplan \
