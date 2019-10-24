@@ -7,7 +7,7 @@ node {
   stage('Automating') {
        def instances=params.No_of_Instances_required
        def image_type=params.EC2_Image_ID
-       def image=image_type.tokensize('-').image()
+       def image=image_type.tokensize.split()
        if (params.Automation_Type == 'Full_Automation')
        {
          sh ("cd /opt/automation/terraform/dev && terraform plan -out=tfplan \
