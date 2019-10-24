@@ -10,7 +10,7 @@ node {
        
        def image=sh """#!/bin/bash
     
-        echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" '{print $2}'
+        echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" '{print \$2}'
         """
        
        
