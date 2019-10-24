@@ -12,7 +12,7 @@ node {
     
         echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" '{print \$2}'
         """
-     /*
+     */
     sh "echo '${image}'"
       
     
