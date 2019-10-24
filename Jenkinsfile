@@ -7,7 +7,7 @@ node {
   stage('Automating') {
        def instances=params.No_of_Instances_required
        def image_type=params.EC2_Image_ID
-       def image= sh 'echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" {'print \$2'}'
+       def image= sh 'echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" '{print \$2}''
        if (params.Automation_Type == 'Full_Automation')
        {
          sh ("cd /opt/automation/terraform/dev && terraform plan -out=tfplan \
