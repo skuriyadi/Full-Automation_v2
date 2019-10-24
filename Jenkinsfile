@@ -7,6 +7,7 @@ node {
   stage('Automating') {
        def instances=params.No_of_Instances_required
        def image=params.EC2_Image_ID
+       def dockerimage=params.Docker_Image
        if (params.Automation_Type == 'Full_Automation')
        {
          sh ("cd /opt/automation/terraform/dev && terraform plan -out=tfplan \
@@ -17,7 +18,7 @@ node {
      
      /* Ansible Playbook */        
          sh "cd /opt/automation/ansible && sudo sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
-             -u ubuntu -e '(image_id='${image}'' --private-key Jenkins.pem -i invent installdocker.yml"      
+             -u ubuntu -e '(image_id='${dockerimage}'' --private-key Jenkins.pem -i invent installdocker.yml"      
        
        }      
        
