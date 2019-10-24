@@ -18,7 +18,7 @@ node {
      
      /* Ansible Playbook */        
          sh "cd /opt/automation/ansible && sudo sleep 30; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook \
-             -u ubuntu -e '(image_id='${dockerimage}')' --private-key Jenkins.pem -i invent installdocker.yml"      
+             -u ubuntu -e (image_id='${dockerimage}') --private-key Jenkins.pem -i invent installdocker.yml"      
        
        }      
        
