@@ -6,14 +6,16 @@ node {
   /* To create AWS Instances */
   stage('Automating') {
        def instances=params.No_of_Instances_required
-       def image_type=params.EC2_Image_ID
-       
-       def image=sh """#!/bin/bash
+       def image=params.EC2_Image_ID
+  
+      /* def image=sh """#!/bin/bash
     
         echo "Ubuntu:ami-04b9e92b5572fa0d1" | awk -F":" '{print \$2}'
         """
+     /*
     sh "echo '${image}'"
-       
+      
+    
        if (params.Automation_Type == 'Full_Automation')
        {
          sh ("cd /opt/automation/terraform/dev && terraform plan -out=tfplan \
