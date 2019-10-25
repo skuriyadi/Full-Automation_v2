@@ -23,7 +23,7 @@ AWS Account
 Jenkins Account
 
 ```
-## Folder structure
+## Module structure
 ```
 
 ── ansible
@@ -101,7 +101,7 @@ copy your AWS PEM Key to /ansible/ folder
 ```
 $ cd /terraform/dev/ and run "terraform plan" to create an execution plan and check the current state.
 
-Output will show the entire infrastructure of the AWS EC2 Instance if the code is executed correctly.
+Output will show all the details of the plan if the code is executed correctly.
 
 ```
 
