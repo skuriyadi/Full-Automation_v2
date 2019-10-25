@@ -1,6 +1,6 @@
 # Code Challenge
 
-This project is created to install a two-tier application. The project is split into two modules, Infrastructure management and Configuration management. Jenkinks is used for automating both the modules together or separetly.
+This project is created to install a two-tier application. The project is split into two modules, Infrastructure management and Configuration management. Jenkinks is used for integrating the modules.
 
 Terraform is used for Infrastructure Management and Ansible is used for Configuration Management. Nginx server or Docker image/website is the endpoint of this project. Nginx server/website can be accessed from your web browser through using port 80.
 
