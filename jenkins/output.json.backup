@@ -1,0 +1,170 @@
+{
+  "version": 4,
+  "terraform_version": "0.12.10",
+  "serial": 4,
+  "lineage": "0ea1e0be-1ca7-39fd-128d-abc09c25d049",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.my_ec2",
+      "mode": "data",
+      "type": "http",
+      "name": "myip",
+      "provider": "provider.http",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "body": "72.182.215.89\n",
+            "id": "2019-10-15 04:54:17.217985916 +0000 UTC",
+            "request_headers": null,
+            "url": "http://ipv4.icanhazip.com"
+          }
+        }
+      ]
+    },
+    {
+      "module": "module.my_ec2",
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "web",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "ami": "ami-04b9e92b5572fa0d1",
+            "arn": "arn:aws:ec2:us-east-1:447895454160:instance/i-0cfbd1acdc7dbb746",
+            "associate_public_ip_address": false,
+            "availability_zone": "us-east-1d",
+            "cpu_core_count": 1,
+            "cpu_threads_per_core": 1,
+            "credit_specification": [
+              {
+                "cpu_credits": "standard"
+              }
+            ],
+            "disable_api_termination": false,
+            "ebs_block_device": [],
+            "ebs_optimized": false,
+            "ephemeral_block_device": [],
+            "get_password_data": false,
+            "host_id": null,
+            "iam_instance_profile": "",
+            "id": "i-0cfbd1acdc7dbb746",
+            "instance_initiated_shutdown_behavior": null,
+            "instance_state": "shutting-down",
+            "instance_type": "t2.micro",
+            "ipv6_address_count": 0,
+            "ipv6_addresses": [],
+            "key_name": "Jenkins",
+            "monitoring": false,
+            "network_interface": [],
+            "network_interface_id": null,
+            "password_data": "",
+            "placement_group": "",
+            "primary_network_interface_id": "",
+            "private_dns": "",
+            "private_ip": "",
+            "public_dns": "",
+            "public_ip": "",
+            "root_block_device": [
+              {
+                "delete_on_termination": true,
+                "encrypted": false,
+                "iops": 100,
+                "kms_key_id": "",
+                "volume_id": "vol-0fc3df5623e6fd868",
+                "volume_size": 8,
+                "volume_type": "gp2"
+              }
+            ],
+            "security_groups": [],
+            "source_dest_check": true,
+            "subnet_id": "",
+            "tags": {
+              "Name": "project one"
+            },
+            "tenancy": "default",
+            "timeouts": null,
+            "user_data": null,
+            "user_data_base64": null,
+            "volume_tags": {},
+            "vpc_security_group_ids": [
+              "sg-0a585043dfa3fc0b1"
+            ]
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    },
+    {
+      "module": "module.my_vpc",
+      "mode": "managed",
+      "type": "aws_security_group",
+      "name": "sg_22_80",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:447895454160:security-group/sg-0a585043dfa3fc0b1",
+            "description": "Managed by Terraform",
+            "egress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 0,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "-1",
+                "security_groups": [],
+                "self": false,
+                "to_port": 0
+              }
+            ],
+            "id": "sg-0a585043dfa3fc0b1",
+            "ingress": [
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 22,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 22
+              },
+              {
+                "cidr_blocks": [
+                  "0.0.0.0/0"
+                ],
+                "description": "",
+                "from_port": 80,
+                "ipv6_cidr_blocks": [],
+                "prefix_list_ids": [],
+                "protocol": "tcp",
+                "security_groups": [],
+                "self": false,
+                "to_port": 80
+              }
+            ],
+            "name": "sg_2280",
+            "name_prefix": null,
+            "owner_id": "447895454160",
+            "revoke_rules_on_delete": false,
+            "tags": {},
+            "timeouts": null,
+            "vpc_id": "vpc-ebc56291"
+          },
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6NjAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIxIn0="
+        }
+      ]
+    }
+  ]
+}

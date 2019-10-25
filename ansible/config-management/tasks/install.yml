@@ -1,0 +1,9 @@
+---
+- name: Install docker 
+  shell: snap install docker
+  become: yes
+- name: Remove active containers
+  shell: docker stop $(docker ps -a -q) || true && docker rm $(docker ps -a -q) || true
+- name: Install docker image
+  shell: docker run -p 80:80 -d {{ image_id }}
+  become: yes

@@ -1,0 +1,3 @@
+---
+# vars file for config-management
+image_id: 'nginx'

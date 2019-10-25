@@ -1,0 +1,14 @@
+---
+- hosts: all
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+  ignore_unreachable: true
+  tasks:
+  - name: wait for ec2 to connect
+    wait_for_connection:
+      timeout: 30
+  roles:
+    - { role: config-management, image_id: '{ image_id }' }
+  
+    
