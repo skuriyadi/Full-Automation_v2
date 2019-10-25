@@ -1,16 +1,18 @@
 # Code Challenge
 
-This project is created to install a two-tier application. The project is split into two modules, Infrastructure management and Configuration management. 
+This project is created to install a two-tier application. The project is split into two modules, Infrastructure management and Configuration management. Jenkinks is used for automating both the modules together or separetly.
 
-Terraform is used for Infrastructure Management and Ansible is used for Configuration Management. Nginx server is the endpoint of this project. Nginx can be accessed from your web browser through using port 80.
+Terraform is used for Infrastructure Management and Ansible is used for Configuration Management. Nginx server or Docker image/website is the endpoint of this project. Nginx can be accessed from your web browser through using port 80.
 
 Terraform will provision an AWS EC2 server with an Ubuntu operating system.
 
-Ansible will install docker on the AWS EC2 and run a docker container with Nginx.
+Ansible will install docker on the AWS EC2 and run a docker container with image provided.
+
+Jenkins will automate all modules and launch the website on Nginx server.
 
 ## Getting Started
 
-Copy/Clone the repository codechallenge to your local system.
+Copy/Clone the repository codechallenge to your local system and GitHub.
 
 ## Prerequisites
 ```
@@ -18,41 +20,61 @@ Operating System: CentOS 7
 Terraform
 Ansible
 AWS Account
+Jenkins Account
 
 ```
 ## Folder structure
 ```
 
-├── ansible
-│   ├── config-management ----------> This is an Ansible Role
-│   │   ├── defaults
-│   │   │   └── main.yml
-│   │   ├── files
-│   │   ├── handlers
-│   │   │   └── main.yml
-│   │   ├── meta
-│   │   │   └── main.yml
-│   │   ├── README.md
-│   │   ├── tasks
-│   │   │   ├── install.yml
-│   │   │   └── main.yml
-│   │   ├── templates
-│   │   ├── tests
-│   │   │   ├── inventory
-│   │   │   └── test.yml
-│   │   └── vars
-│   │       └── main.yml
-│   └── installdocker.yml
-└── terraform         
+── ansible
+│   ├── config-management
+│   │   ├── defaults
+│   │   │   └── main.yml
+│   │   ├── files
+│   │   ├── handlers
+│   │   │   └── main.yml
+│   │   ├── meta
+│   │   │   └── main.yml
+│   │   ├── README.md
+│   │   ├── tasks
+│   │   │   ├── install.yml
+│   │   │   └── main.yml
+│   │   ├── templates
+│   │   ├── tests
+│   │   │   ├── inventory
+│   │   │   └── test.yml
+│   │   └── vars
+│   │       └── main.yml
+│   ├── installdocker.yml
+│   └── Jenkins.pem
+├── docker
+│   ├── Dockerfile
+│   └── index.html
+├── jenkins
+│   └── Jenkinsfile
+└── terraform
     ├── dev
-    │   └── main.tf
-    └── modules ---------------> This is a Terraform Module
+    │   ├── automation
+    │   │   └── ansible
+    │   ├── create.tfplan
+    │   ├── get-pip.py
+    │   ├── main.tf
+    │   ├── plan
+    │   ├── terraform.tfstate
+    │   ├── terraform.tfstate.backup
+    │   ├── tfplan
+    │   └── variable.tfvars
+    └── modules
         ├── ec2
-        │   ├── instances.tf
-        │   └── variables.tf
+        │   ├── ansible
+        │   ├── instances.tf
+        │   ├── inventory.tpl
+        │   ├── Jenkins.pem
+        │   └── variables.tf
         └── vpc
             ├── network.tf
             └── variables.tf
+
 
 ```
 
@@ -70,7 +92,7 @@ $ cd /terraform/dev/ and run "terraform init" to initialize the Terraform
 
 Initializing Ansible:
 
-copy your AWS PEM Key to /ansible/
+copy your AWS PEM Key to /ansible/ folder
 
 ```
 
@@ -86,29 +108,20 @@ Output will show the entire infrastructure of the AWS EC2 Instance if the code i
 ## Deployment
 
 ```
-AWS EC2:
-*** You can change the region in the AWS by editing the main.yml in dev folder ***
-
-commands:
- $ cd /codechallenge/terraform/dev
- $ terraform apply -auto-approve
+Login to Jenkins and run "Automation_New" Job
  
- - Verify if the code is executed without errors
- - Log into AWS Console to check if the 'one project' EC2 is initialized.
- 
- Docker and Nginx Server:
- 
- commands:
-  $ cd /codechallenge/ansible
-  $ ansible-playbook installdocker.yml --private-key xxxx.key -u ubuntu
-  
-  - verify if the code is executed without errors
-  - Go-to browser and use the EC2 public ID and port 80 to view the Nginx home page
+ - Select the Automation type
+      - Full Automation: Will provision AWS Instances and Launch the website on Nginx server.
+      - Launch EC2: will create only EC2 Instances
+      - Image update: will launch docker image on Docker container
+ - Update number of instances required
+ - Choose the AMI image 
+ - Choose the Docker image
 
 ```
 ## Destroy
 ```
- $ cd /codechallenge/terraform/dev
+ $ cd /automation/terraform/dev
  $ terraform destroy -auto-approve
 ```
 
