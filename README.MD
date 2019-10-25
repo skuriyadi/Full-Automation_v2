@@ -17,7 +17,8 @@ Copy/Clone the repository codechallenge to your local system.
 Operating System: CentOS 7
 Terraform
 Ansible
-AWS Account 
+AWS Account
+
 ```
 ## Folder structure
 ```
