@@ -1,4 +1,4 @@
-# Code Challenge
+# Automation
 
 This project is created to install a two-tier application. The project is split into two modules, Infrastructure management and Configuration management. Jenkinks is used for integrating the modules.
 
